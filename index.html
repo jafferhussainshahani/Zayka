@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ur" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayqa Red - Premium Tomato Ketchup & Sauces</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf2f2',
+                            100: '#fde8e8',
+                            500: '#e53e3e',
+                            600: '#c53030',
+                            700: '#9b2c2c',
+                            800: '#742a2a',
+                            900: '#4a1d1d',
+                            accent: '#F59E0B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #742a2a 0%, #c53030 50%, #e53e3e 100%);
+        }
+        .bottle-overlay-label {
+            background: linear-gradient(180deg, #9b2c2c 0%, #e53e3e 100%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center max-w-7xl mx-auto">
+        <span class="hidden sm:inline"><i class="fa-solid fa-pepper-hot text-amber-400 mr-2"></i>100% Fresh Farm Tomatoes | No Artificial Colors</span>
+        <span class="mx-auto sm:mx-0">Direct Order Hotline / WhatsApp: <a href="https://wa.me/923333899154?text=Hi%20Zayqa%20Red,%20I%20want%20to%20place%20an%20order" class="underline hover:text-amber-300 font-bold ml-1"><i class="fa-brands fa-whatsapp text-emerald-400"></i> 0333-3899154</a></span>
+        <span class="hidden md:inline"><i class="fa-solid fa-truck-fast mr-1"></i> Fast Delivery Nationwide</span>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 glass-header border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-bottle-droplet text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-brand-700 block leading-none">ZAYQA <span class="text-brand-500">RED</span></span>
+                        <span class="text-[10px] tracking-widest font-semibold text-gray-500 uppercase">Tomato Ketchup</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-gray-700">
+                    <a href="#hero" class="hover:text-brand-600 transition-colors">Home</a>
+                    <a href="#products" class="hover:text-brand-600 transition-colors">Products</a>
+                    <a href="#vision" class="hover:text-brand-600 transition-colors">Vision & Strategy</a>
+                    <a href="#segmentation" class="hover:text-brand-600 transition-colors">Target Market</a>
+                    <a href="#swot" class="hover:text-brand-600 transition-colors">SWOT & Analysis</a>
+                    <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions: Search, User Login, Shopping Cart -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- Search Input -->
+                    <div class="hidden sm:block relative">
+                        <input type="text" id="searchInput" placeholder="Search ketchup..." class="pl-9 pr-4 py-2 text-xs rounded-full bg-gray-100 border-none focus:ring-2 focus:ring-brand-500 w-36 lg:w-48 transition-all">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                    </div>
+
+                    <!-- User Account Button -->
+                    <button onclick="openLoginModal()" id="userAuthBtn" class="flex items-center space-x-1 px-3 py-2 text-xs font-semibold rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+                        <i class="fa-regular fa-user text-sm"></i>
+                        <span id="userAuthText" class="hidden sm:inline">Login</span>
+                    </button>
+
+                    <!-- Cart Drawer Trigger Button -->
+                    <button onclick="toggleCartDrawer()" class="relative bg-brand-600 hover:bg-brand-700 text-white p-2.5 rounded-full shadow-md transition hover:scale-105 flex items-center justify-center">
+                        <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-amber-400 text-brand-900 text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileNav()" class="lg:hidden text-gray-700 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="hidden lg:hidden border-t border-gray-200 bg-white px-4 pt-3 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileNav()" class="block text-gray-700 hover:text-brand-600 font-medium py-1">Home</a>
+            <a href="#products" onclick="toggleMobileNav()" class="block text-gray-700 hover:text-brand-600 font-medium py-1">Products</a>
+            <a href="#vision" onclick="toggleMobileNav()" class="block text-gray-700 hover:text-brand-600 font-medium py-1">Vision & Strategy</a>
+            <a href="#segmentation" onclick="toggleMobileNav()" class="block text-gray-700 hover:text-brand-600 font-medium py-1">Target Market</a>
+            <a href="#swot" onclick="toggleMobileNav()" class="block text-gray-700 hover:text-brand-600 font-medium py-1">SWOT & Analysis</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="block text-gray-700 hover:text-brand-600 font-medium py-1">Contact</a>
+            <div class="pt-2">
+                <a href="https://wa.me/923333899154" class="w-full text-center block bg-emerald-600 text-white font-bold py-2 rounded-lg"><i class="fa-brands fa-whatsapp mr-2"></i>Order on WhatsApp</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative hero-gradient text-white overflow-hidden py-16 lg:py-24">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide border border-white/30">
+                        <span class="bg-amber-400 text-brand-900 px-2 py-0.5 rounded-md font-bold uppercase text-[10px]">NEW</span>
+                        <span>Asli Tamatar, Behtareen Zayqa!</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Har Niwale Mein <br>
+                        <span class="text-amber-300 drop-shadow-md">Zayqa Red</span> Ka Jadoo!
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-red-100 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Indulge in Pakistan's rich, thick, and perfectly spiced premium tomato ketchup. Made with 100% ripe, farm-fresh red tomatoes for your favorite snacks.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 bg-amber-400 hover:bg-amber-300 text-brand-900 font-extrabold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center text-base">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i> Order Online Now
+                        </a>
+                        <a href="https://wa.me/923333899154?text=Salam!%20I%20want%20to%20order%20Zayqa%20Red%20Tomato%20Ketchup" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center text-base flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Quick Order: 0333-3899154
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/20 max-w-lg mx-auto lg:mx-0">
+                        <div class="text-center lg:text-left">
+                            <p class="text-2xl font-black text-amber-300">100%</p>
+                            <p class="text-xs text-red-100 font-medium">Natural Tomatoes</p>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <p class="text-2xl font-black text-amber-300">HALAL</p>
+                            <p class="text-xs text-red-100 font-medium">Certified Quality</p>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <p class="text-2xl font-black text-amber-300">Rs. 280+</p>
+                            <p class="text-xs text-red-100 font-medium">Affordable Packs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-72 sm:w-80 lg:w-96">
+                        <div class="absolute inset-0 bg-amber-400 opacity-20 blur-3xl rounded-full"></div>
+                        <div class="relative bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-2xl text-center transform hover:rotate-1 transition duration-500">
+                            <div class="relative inline-block">
+                                <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" alt="Zayqa Red Tomato Ketchup Bottle" class="w-full h-80 object-cover rounded-2xl shadow-lg border-2 border-white/40" onerror="this.src='https://placehold.co/600x800/c53030/ffffff?text=Zayqa+Red+Tomato+Ketchup'">
+                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 bottle-overlay-label text-white py-2 px-3 rounded-lg border border-amber-400/50 shadow-md">
+                                    <p class="font-extrabold text-sm tracking-wider text-amber-300">ZAYQA RED</p>
+                                    <p class="text-[10px] uppercase font-semibold text-white">Tomato Ketchup</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-white text-gray-900 rounded-xl p-3 shadow-md">
+                                <div class="flex justify-between items-center text-xs font-bold">
+                                    <span class="text-brand-700"><i class="fa-solid fa-star text-amber-400"></i> Super Rich Flavor</span>
+                                    <span class="bg-red-100 text-brand-700 px-2 py-0.5 rounded">800g Squeeze Bottle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATEGORIES & CATALOG SECTION -->
+    <section id="products" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-brand-600 font-bold uppercase tracking-wider text-xs bg-red-100 px-3 py-1 rounded-full">Our Products</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Zayqa Red Tomato Ketchup Range</h2>
+            <p class="text-gray-600 mt-3 text-sm sm:text-base">Choose from our wide variety of premium ketchups, spicy sauces, and sachets tailored for family dinners, restaurants, and snack lovers.</p>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Dynamically populated JavaScript grid -->
+        </div>
+    </section>
+
+    <!-- BRAND STRATEGY & VISION SECTION -->
+    <section id="vision" class="py-16 bg-gradient-to-b from-gray-100 to-white border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-brand-600 font-bold uppercase tracking-wider text-xs bg-red-100 px-3 py-1 rounded-full">Brand Strategy & Vision</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mt-3 mb-6">Building Pakistan's Most Trusted Flavor Brand</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0 font-bold text-lg shadow-md">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg">Our Vision</h3>
+                                <p class="text-gray-600 text-sm mt-1">To become the household standard for taste and authenticity across Pakistan, delivering pure tomato richness to every meal with uncompromised hygienic standards.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 font-bold text-lg shadow-md">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg">Brand Strategy</h3>
+                                <p class="text-gray-600 text-sm mt-1">Positioning <strong>Zayqa Red</strong> as a premium quality yet highly affordable tomato ketchup. We combine local spice preferences with international manufacturing standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-900 text-white p-8 rounded-3xl shadow-xl border-4 border-amber-400 relative overflow-hidden">
+                    <h3 class="text-2xl font-black text-amber-300 mb-4">Why Choose Zayqa Red?</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                            <span><strong>Rich Puree Content:</strong> Higher tomato paste ratio than standard market alternatives.</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                            <span><strong>Hygienic Squeeze Packaging:</strong> Easy pour caps ensuring non-messy usage.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8 pt-6 border-t border-red-800 flex justify-between items-center text-xs text-red-200">
+                        <span>Direct Orders & Franchising:</span>
+                        <a href="tel:03333899154" class="font-bold text-amber-300 text-sm hover:underline"><i class="fa-solid fa-phone mr-1"></i> 0333-3899154</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION / CONTACT FOOTER BANNER -->
+    <section id="contact" class="bg-brand-800 text-white py-16 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl sm:text-5xl font-black mb-4">Tayyar Hain Asli Zayqa Chakhne Ke Liye?</h2>
+            <p class="text-red-100 max-w-2xl mx-auto text-base sm:text-lg mb-8">Place your home or commercial bulk order today. Instant fast delivery right to your door step.</p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/923333899154?text=Salam!%20I%20want%20to%20order%20Zayqa%20Red%20Ketchup" class="bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold px-8 py-4 rounded-xl shadow-lg transition flex items-center space-x-3 text-lg">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>WhatsApp Order: 0333-3899154</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-black text-gray-900">Zayqa Red Login</h3>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <input type="text" id="authPhone" required placeholder="03xx-xxxxxxx" class="w-full px-4 py-2.5 text-xs rounded-xl border border-gray-300">
+                <input type="password" id="authPass" required placeholder="••••••••" class="w-full px-4 py-2.5 text-xs rounded-xl border border-gray-300">
+                <button type="submit" class="w-full py-3 bg-brand-600 text-white font-extrabold rounded-xl">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 bg-black/60 z-50 hidden">
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between p-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-extrabold text-base">Your Cart</h3>
+                <button onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
+            <div class="border-t pt-3">
+                <button onclick="handleCheckout()" class="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl"><i class="fa-brands fa-whatsapp mr-2"></i>Order via WhatsApp (0333-3899154)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { id: '1', name: 'Zayqa Red Classic Ketchup (Bottle)', price: 320, weight: '800g Squeeze Bottle', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80', desc: 'Rich, thick, original ketchup recipe.' },
+            { id: '2', name: 'Zayqa Red Spicy Chilli Garlic', price: 350, weight: '800g Squeeze Bottle', image: 'https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=500&q=80', desc: 'Infused with real crushed red garlic.' },
+            { id: '3', name: 'Zayqa Red Family Pouch Pack', price: 490, weight: '1.2 kg Value Pouch', image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=500&q=80', desc: 'Economical large refill pack.' },
+            { id: '4', name: 'Zayqa Red Snack Pack Sachets', price: 450, weight: '100 Sachets Box', image: 'https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=500&q=80', desc: 'Single-use mini packets.' }
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm p-4 flex flex-col justify-between">
+                    <img src="${p.image}" class="h-48 w-full object-cover rounded-xl mb-3">
+                    <div>
+                        <h3 class="font-extrabold text-gray-900">${p.name}</h3>
+                        <p class="text-xs text-gray-500 my-1">${p.desc}</p>
+                        <p class="text-lg font-black text-brand-700">Rs. ${p.price}</p>
+                    </div>
+                    <button onclick="addToCart('${p.id}')" class="w-full mt-3 py-2 bg-brand-600 text-white font-bold rounded-xl text-xs"><i class="fa-solid fa-cart-plus mr-1"></i> Add to Order</button>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const p = products.find(prod => prod.id === id);
+            cart.push(p);
+            document.getElementById('cartCountBadge').innerText = cart.length;
+            toggleCartDrawer(true);
+            updateCart();
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center bg-gray-50 p-2 rounded-lg text-xs">
+                    <span>${item.name}</span>
+                    <span class="font-bold">Rs. ${item.price}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleCartDrawer(forceOpen = false) {
+            const drawer = document.getElementById('cartDrawer');
+            if(forceOpen) drawer.classList.remove('hidden');
+            else drawer.classList.toggle('hidden');
+        }
+
+        function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.add('hidden'); }
+        function handleAuthSubmit(e) { e.preventDefault(); closeLoginModal(); alert('Logged in successfully!'); }
+        function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('hidden'); }
+
+        function handleCheckout() {
+            let msg = `*NEW ORDER - ZAYQA RED KETCHUP*\n`;
+            cart.forEach(item => { msg += `- ${item.name}: Rs. ${item.price}\n`; });
+            window.open(`https://wa.me/923333899154?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        window.onload = renderProducts;
+    </script>
+</body>
+</html>
